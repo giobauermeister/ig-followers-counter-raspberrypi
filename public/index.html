@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Instagram Like Counter</title>
+
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+
+  </head>
+
+<body>
+  <div class="container">
+    <div class="row">
+
+      <div class="col s12" style="background-color:transparent">
+        <img class="img-responsive center-block" style="width:350px;height:125px" src="ff-logo.png" alt="logo-full" border="0">
+      </div>
+      <div class="col s12" style="height:3px;background-color:blue">
+
+      </div>
+      <div class="col s12" style="height:20px;background-color:transparent">
+
+      </div>
+      <div class="col s5" style="background-color:transparent">
+        <h3 style="text-align:right">seguidores</h3>
+      </div>
+      <div class="col s7" style="background-color:transparent">
+        <img class="img-responsive left-block" style="width:325px;height:80px" src="ig-logo-text.png" alt="logo-full" border="0">
+      </div>
+      <div class="col s12" style="background-color:transparent">
+        <h1 id="txt-followers" style="text-align:center">#num</h1>
+      </div>
+
+    </div>
+  </div>
+</body>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+<script>
+var socket = io.connect();
+
+socket.on('responseEvent', function(response) {
+    var username = response.data.username
+    var name = response.data.full_name
+    var followers = response.data.counts.followed_by
+    console.log("Username: " + username);
+    console.log("Name: " + name);
+    console.log("Followers: " + followers);
+    document.getElementById("txt-followers").innerHTML = followers;
+});
+</script>
