@@ -7,9 +7,8 @@
       <title>Instagram Like Counter</title>
 
       <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
-
+      <link rel="stylesheet" href="css/flipclock.css">
   </head>
 
 <body>
@@ -17,7 +16,7 @@
     <div class="row">
 
       <div class="col s12" style="background-color:transparent">
-        <img class="img-responsive center-block" style="width:350px;height:125px" src="ff-logo.png" alt="logo-full" border="0">
+        <img class="img-responsive center-block" style="width:300px;height:110px" src="ff-logo.png" alt="logo-full" border="0">
       </div>
       <div class="col s12" style="height:3px;background-color:blue">
 
@@ -26,34 +25,60 @@
 
       </div>
       <div class="col s5" style="background-color:transparent">
-        <h3 style="text-align:right">seguidores</h3>
+        <h4 style="text-align:right">seguidores</h4>
       </div>
       <div class="col s7" style="background-color:transparent">
-        <img class="img-responsive left-block" style="width:325px;height:80px" src="ig-logo-text.png" alt="logo-full" border="0">
+        <img class="img-responsive left-block" style="width:260px;height:60px" src="ig-logo-text.png" alt="logo-full" border="0">
       </div>
+
+      <div class="col s3" style="background-color:transparent">
+
+      </div>
+
+      <div class="col s9" style="background-color:transparent;width:400px;height:150px">
+        <div class="clock" style="margin:1em;"></div>
+      </div>
+
+
       <div class="col s12" style="background-color:transparent">
         <h1 id="txt-followers" style="text-align:center">#num</h1>
       </div>
 
     </div>
   </div>
-</body>
+
+
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+<script src="js/flipclock.js"></script>
 
-<script>
+<script type="text/javascript">
+
+var clock;
+clock = new FlipClock($('.clock'), {
+  clockFace: 'Counter',
+  autoStart: false,
+  minimumDigits: 4
+});
+
 var socket = io.connect();
-
+var followers;
 socket.on('responseEvent', function(response) {
     var username = response.data.username
     var name = response.data.full_name
-    var followers = response.data.counts.followed_by
-    console.log("Username: " + username);
-    console.log("Name: " + name);
-    console.log("Followers: " + followers);
+    followers = response.data.counts.followed_by
+    //console.log("Username: " + username);
+    //console.log("Name: " + name);
+    //console.log("Followers: " + followers);
     document.getElementById("txt-followers").innerHTML = followers;
+
+    clock.setValue(parseInt(followers));
 });
+
 </script>
+
+</body>
+</html>
