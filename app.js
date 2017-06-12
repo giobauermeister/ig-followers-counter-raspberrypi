@@ -23,10 +23,8 @@ var hostname = os.hostname();
 var local_host = hostname + '.local';
 
 var ig_api_url = 'https://api.instagram.com/v1/users/';
-//var redirect_uri = 'http://raspberrypi.local:8080/handleauth';
-var redirect_uri = 'http://' + local_host + ':8080/handleauth';
-//var base_url = 'http://raspberrypi.local:8080';
-var base_url = 'http://' + local_host + ':8080';
+var redirect_uri = 'http://localhost:8080/handleauth';
+var base_url = 'http://localhost:8080';
 
 var USER_ID;
 var TOKEN;
@@ -84,7 +82,7 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-server.listen(8080, local_host, function() {
+server.listen(8080, 'localhost', function() {
  var host = server.address().address
  var port = server.address().port
  console.log("Server listening on %s:%s...", host, port);
