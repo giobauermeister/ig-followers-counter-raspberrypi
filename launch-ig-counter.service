@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/home/pi/launch-ig-counter.sh
+ExecStart=/home/pi/ig-followers-counter-raspberrypi/launch-ig-counter.sh
 User=pi
 Restart=on-failure
 
