@@ -1,0 +1,12 @@
+[Unit]
+Description=Start Instagram Followers Counter
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/home/pi/launch-ig-counter.sh
+User=pi
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
