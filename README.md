@@ -29,7 +29,8 @@ api.use({
 });
 ```
 
-Executando a aplicação manualmente
+## Executando a aplicação manualmente
+
 Antes de executar a aplicação certifique-se de que a Raspberry Pi está conectada a internet via WiFi ou cabo Ethernet. Então execute a aplicação com o comando ‘node app.js’. Se tudo der certo você verá no terminal a mensagem “Server listening on 127.0.0.1:8080...”.
  
 ```bash
